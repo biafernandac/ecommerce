@@ -459,6 +459,24 @@ $app->get("/admin/categories/:idcategory/products/:idproduct/remove", function($
 
 });
 
+// ROTO DA PÁGINA DE DETALHES DO PRODUTO
+
+$app->get("/products/:desurl", function($desurl){
+
+	$product = new Product();
+
+	$product->getFromUrl($desurl);
+
+	$page = new Page();
+
+	$page->setTpl("product-detail", array(
+
+		'product'=>$product->getValues(),
+		'category'=>$product->getCategories()
+
+	));
+
+});
 
 $app->run();
 
