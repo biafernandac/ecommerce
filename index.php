@@ -11,6 +11,7 @@ use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 use \Hcode\Model\Category;
 use \Hcode\Model\Product;
+use \Hcode\Model\Cart;
 
 $app = new Slim();
 
@@ -475,6 +476,18 @@ $app->get("/products/:desurl", function($desurl){
 		'category'=>$product->getCategories()
 
 	));
+
+});
+
+// ROTA CARRINHO DE COMPRAS
+
+$app->get("/cart", function(){
+
+	$cart = Cart::getFromSession();
+
+	$page = new Page();
+
+	$page->setTpl("cart");
 
 });
 
